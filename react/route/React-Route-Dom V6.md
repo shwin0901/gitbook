@@ -18,7 +18,7 @@ function App() {
 
 #### 2. Route变化
 
-V6不再支持Children 和 Compoent，改为element
+V6不再支持render和 Compoent，改为element
 
 ```react
 <Routes>
@@ -164,9 +164,9 @@ function App() {
 ​	声明式路由，不能写index，可用path："" 显示默认组件，useRoutes 的返回值是一个有效React元素，可以用来呈现路由树，如果没有匹配返回null
 
 ```react
-import { useRoutes } from "react-router-dom";
+import { BrowserRouter, useRoutes } from "react-router-dom";
 
-function App() {
+function RouteElemet() {
   let element = useRoutes([
     {
       path: "/",
@@ -184,5 +184,15 @@ function App() {
 
   return element;
 }
+
+function App() {
+    return (
+      <BrowserRouter>
+        <RouteElemet />
+      </BrowserRouter>
+}
 ```
 
+**注：**
+
+**`userRoutes`本身现在只需要BrowserRouter进行包裹不像以前需要`<Routes />`组件进行包裹，否则会报错**
