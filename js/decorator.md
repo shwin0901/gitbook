@@ -107,3 +107,50 @@ myClass.too = () => {
 
 
 
+### 关于 React 项目中不支持修饰器
+
+* 安装装饰器驱动插件
+
+  ```
+  npm install @babel/plugin-proposal-decorators
+  ```
+
+* 在 package.json 文件添加配置
+
+  ```json
+  "babel": {
+      "plugins": [
+        [
+          "@babel/plugin-proposal-decorators",
+          {
+            "legacy": true
+          }
+        ]
+      ],
+      "presets": [
+        "react-app"
+      ]
+  }
+  ```
+
+* 或者在 babel.config.js 文件中添加配置 
+
+  ```javascript
+  module.exports = {
+    // https://github.com/facebook/create-react-app/blob/main/packages/babel-preset-react-app/create.js
+    // babel-preset-react-app
+    presets: ["react-app"],
+    // presets: ["@babel/preset-env"],
+    plugins: [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ]
+    ]
+  };
+  ```
+
+  
+
