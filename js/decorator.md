@@ -100,3 +100,10 @@ myClass.too = () => {
 
 
 
+### 关于vscode使用修饰器语法报错
+
+* 在搜索设置输入 experimentalDecorators 
+* 找到 JS/TS › Implicit Project Config: Experimental Decorators 选项勾选
+
+
+
