@@ -231,3 +231,66 @@ console.log(myClass.totalPirce)  // 50
 
   
 
+### Reactions（监听数据修改的方式）
+
+Reactions 用来对状态改变自动发生的副作用进行建模
+
+* **autorun**：
+  * 在被其观察的任意一个值发生改变时重新执行一个函数
+  * 默认会执行一次，当内部所观测的发生改变时会重新触发
+* **reaction**
+  * 有两个参数都是函数，第一函数返回值做为第二个函数的参数使用
+  * 第二个函数为data, reaction
+    * data 为第一个函数的返回值
+    * reaction为当前函数本身，调用reaction.dispose()，手动停止当前 reaction 的监听
+* **when**
+  * 有两个参数都是函数，第一个函数返回为true的时候，第二个函数才会执行
+  * 只会生效一次，下次所依赖的数据还是被满足时不会执行
+
+```javascript
+import {makeObservable, autorun, when, reaction } from 'mobx'
+
+class MyClass {
+    @observable count = 10;
+    @observable pirce = 5;
+    
+    constructor() {
+        makeObservable(this)
+    }
+    
+    @action.bound change() {
+        this.count = 20
+    }
+    
+    @action.bound changeWhen(value = 5) {
+        this.pirce = value
+    }
+}
+
+const myClass = new MyClass()
+
+autorun(() => {
+    console.log("autorun:", myClass.count)
+})
+
+myClass.change() // 调用之后，autorun还会执行
+
+
+when(() => {
+    return myClass.pirce > 10
+}, () => {
+    console.log("when:", myClass.pirce)
+})
+myClass.changWhen(11) //调用之后，when第一个函数返回值满足为true，则第二个函数会执行
+myClass.changWhen(12) //后续的调用即使满足也不会执行when
+
+reaction(() => {
+    return myClass.pirce
+}, (data, reaction) => {
+    console.log("reaction:", data) //为第一个函数的返回值
+    if(myClass.pirce > 10) {
+        reaction.dispose() //当前pirce大于10，就不再循环调用
+    }
+})
+```
+
