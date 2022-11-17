@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .box img {
+      width: 500px;
+      height: 700px;
+    }
+
+    .show {
+      animation: fallPerspective 1.3s ease;
+    }
+    @keyframes fallPerspective {
+      from {opacity: 0; transform: translate(0px, 20px);}
+
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+    <img data-src="../img/1.png" alt="">
+  </div>
+</body>
+
+<script>
+  const observe = new IntersectionObserver(fallBack, {threshold: 0.3})
+
+  function fallBack(entries) {
+    const arr = entries.filter(entry => {
+      return entry.isIntersecting && entry.intersectionRatio > 0.3
+    })
+
+    if(arr.length) {
+      arr.forEach(item => {
+        item.target.src = item.target.getAttribute('data-src');
+        item.target.classList.add('show')
+      });
+    }
+  } 
+
+  const imgs = document.querySelectorAll(".box img")
+
+  imgs.forEach(img => observe.observe(img))
+</script>
+</html>
