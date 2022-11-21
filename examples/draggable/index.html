@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Draggable</title>
+
+  <style>
+    .box {
+      display: flex;
+    }
+
+    .box1 {
+      width: 200px;
+    }
+
+    li {
+      list-style: none;
+      height: 60px;
+    }
+
+    .box1>li:nth-child(2n) {
+      background-color: dodgerblue;
+      margin: 10px 0;
+    }
+
+    .box1>li:nth-child(2n + 1) {
+      background-color: coral;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <ul class="box1" ondrop="handleDrop(event)" ondragover="handleDragover(event)" ondragleave="handleDragleave(event)">
+      <li id="1" draggable="true" ondragstart="handleDragstart(event)" ondragend="handleDragend(event)">box1-1</li>
+      <li id="2" draggable="true" ondragstart="handleDragstart(event)">box1-2</li>
+      <li id="3" draggable="true" ondragstart="handleDragstart(event)">box1-3</li>
+      <li id="4" draggable="true" ondragstart="handleDragstart(event)">box1-4</li>
+      <li id="5" draggable="true" ondragstart="handleDragstart(event)">box1-5</li>
+    </ul>
+  </div>
+</body>
+
+<script>
+  const box1 = document.querySelector(".box1");
+
+  function handleDragstart(event) {
+    console.log("拖拽开始", event)
+    event.dataTransfer.setData("id", event.target.id) // 设置当前被拖拽元素的id
+    event.dataTransfer.effectAllowed = "move";
+  }
+
+  function handleDragend(event) {
+    console.log("拖拽结束时触发")
+  }
+
+  function handleDragover(event) {
+    event.preventDefault()
+    console.log("元素被放置目标区域有上时触发")
+  }
+
+  function handleDragleave(event) {
+    console.log("元素离开目标区域时触发")
+  }
+
+  function handleDrop(event) {
+    event.preventDefault()
+    console.log("元素在可释放目标区域上释放时触发")
+
+    const id = event.dataTransfer.getData("id") // 获取被拖拽元素的id
+    const node = document.getElementById(id)
+    document.getElementById(event.target.id).insertAdjacentElement('afterend', node)
+  }
+</script>
+
+</html>
