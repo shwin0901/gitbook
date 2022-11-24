@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现元素布局,左右固定,中间自适应</title>
+
+  <style>
+    /* 使用flex实现 */
+    .container {
+      display: flex;
+    }
+
+    .left {
+      width: 100px;
+    }
+
+    /* flex-grow: 可拉伸    flex-shrink： 可压缩    flex-basis: 当前元素的宽度 */
+    .middle {
+      flex: 1; 
+    }
+
+    .right {
+      width: 200px;
+    }
+
+
+    /* 使用position：absolute实现 */
+    .container>div {
+      position: absolute;
+    }
+
+    .left {
+      left: 0;
+      width: 100px;
+    }
+
+    .middle {
+      left: 100px;
+      right: 200px;
+    }
+
+    .right {
+      right: 0;
+      width: 200px;
+    }
+
+
+    /* 使用display:table实现 */
+    .container {
+      display: table;
+      width: 100%;
+    }
+
+    .container>div {
+      display: table-cell;
+    }
+    .left{
+      width: 100px;
+    }
+    .right{
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">左侧文字</div>
+    <div class="middle">中间文字</div>
+    <div class="right">右侧文字</div>
+  </div>
+</body>
+
+</html>
