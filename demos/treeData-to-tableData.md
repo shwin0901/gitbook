@@ -3,9 +3,9 @@
 ```javascript
 // 使用递归遍历，convert的str参数记录父级的key值
 function convert(treeData, str = "") {
-	const tableData = {}
+    const tableData = {};
     for(let [key, value] of Object.entries(treeData)) {
-		if(value instanceof Object) {
+       if(value instanceof Object) {
             let objKey = str ? `${str}.${key}` : key
             const tableObj = convert(value, objKey);
             Object.assign(tableData, tableObj)
@@ -13,7 +13,7 @@ function convert(treeData, str = "") {
             let objKey = str ? `${str}.${key}` : key
             tableData[objKey] = value
         }
-	}
+    }
     return tableData
 }
 
@@ -36,7 +36,7 @@ const tree = {
 convert(tree)
 // {
 //	a.b.d.e: "1",
-//  a.b.f: "2",
+//	a.b.f: "2",
 //	a.c.g: "3",
 //	a.c.h: "4",
 //	j: "5",
