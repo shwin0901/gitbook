@@ -18,7 +18,7 @@
 
 
 
-```react
+```javascript
 // 父组件
 import { useRef } from 'react'
 import Child from './Child'
