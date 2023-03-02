@@ -2,24 +2,24 @@
 
 #### 绑定在目标元素上（3个事件）
 
-* dragstart —— 拖拽开始
-* drag —— 拖拽移动事件
-* dragend —— 结束拖拽
+* **dragstart** —— 拖拽开始
+* **drag** —— 拖拽移动事件
+* **dragend** —— 结束拖拽
 
 
 
 #### 绑定在目标区域上（3个事件）
 
-* dragenter —— 进入目标区域时触发（一瞬间的触发）
-* dragover —— 在目标区域时触发（始终触发状态）
-* dragleave —— 离开目标区域时触发（不松开鼠标的情况，可重复触发）
-* drop —— 在目标区域中松开鼠标时并放下被拖拽的元素触发
+* **dragenter** —— 进入目标区域时触发（一瞬间的触发）
+* **dragover** —— 在目标区域时触发（始终触发状态）
+* **dragleave** —— 离开目标区域时触发（不松开鼠标的情况，可重复触发）
+* **drop** —— 在目标区域中松开鼠标时并放下被拖拽的元素触发
 
 
 
 #### Attention
 
-鼠标松开的一瞬间，事件dragleave和事件drop不可共存，二者同时存在时，始终只能触发一个事件，而浏览器默认触发dragleave；若想触发drop事件，则需要在dragover事件中阻止dragleave事件的默认行为。
+> 鼠标松开的一瞬间，事件dragleave和事件drop不可共存，二者同时存在时，始终只能触发一个事件，而浏览器默认触发dragleave；若想触发drop事件，则需要在dragover事件中阻止dragleave事件的默认行为。
 
 **阻止方法**：e.preventDefault();
 
