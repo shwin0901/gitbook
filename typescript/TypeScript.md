@@ -189,7 +189,7 @@ Class Father { //父类
     }
 }
 
-class Son entends Father { //子类
+class Son extends Father { //子类
         doSomeThing() {
         console.log("son dosomething")
     }
