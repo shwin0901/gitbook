@@ -196,3 +196,40 @@ function App() {
 **注：**
 
 **`userRoutes`本身现在只需要BrowserRouter进行包裹不像以前需要`<Routes />`组件进行包裹，否则会报错**
+
+
+
+#### 11. [MemoryRouter](https://reactrouter.com/en/main/router-components/memory-router)
+
+* 将内部路由存在数组中，并能指定初始路由
+
+```jsx
+import { MemoryRouter, Router, Route } from 'react-router-dom';
+
+const App = () => (
+	<MemoryRouter initialEntries={["/page"]}>
+    	<Router>
+        	<Route path="/home" element={<Home/>} />
+            <Route path="/page" element={<page/>} />
+        </Router>
+    </MemoryRouter>
+)
+
+const App = () => (
+	<MemoryRouter 
+    	initialEntries={[{
+            pathname: "/page",
+            state: {},
+            search: '',
+            hash: '',
+            key: 'default',
+        }]}
+    >
+    	<Router>
+        	<Route path="/home" element={<Home/>} />
+            <Route path="/page" element={<page/>} />
+        </Router>
+    </MemoryRouter>
+)
+```
+
